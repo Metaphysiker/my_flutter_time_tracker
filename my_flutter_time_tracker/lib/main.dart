@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_flutter_time_tracker/pages/page_manager.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() {
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -10,7 +14,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _router,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -31,7 +36,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -80,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
+          context.go('/abc');
           setState(() {
             print(currentPageIndex);
             currentPageIndex = index;
@@ -144,3 +149,26 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+// GoRouter configuration
+final _router = GoRouter(
+  initialLocation: '/',
+  routes: [
+    GoRoute(
+      name:
+          'abc', // Optional, add name to your routes. Allows you navigate by name instead of path
+      path: '/abc',
+      builder: (context, state) => PageManager(
+        pageName: "abc",
+      ),
+    ),
+    GoRoute(
+      name:
+          'home', // Optional, add name to your routes. Allows you navigate by name instead of path
+      path: '/',
+      builder: (context, state) => PageManager(
+        pageName: "MyHomePagexx",
+      ),
+    ),
+  ],
+);
