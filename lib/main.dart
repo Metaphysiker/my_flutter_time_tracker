@@ -81,28 +81,29 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    var navigationBar = NavigationBar(
+      onDestinationSelected: (int index) {
+        context.go('/abc');
+        setState(() {
+          print(currentPageIndex);
+          currentPageIndex = index;
+        });
+      },
+      indicatorColor: Colors.amber,
+      selectedIndex: currentPageIndex,
+      destinations: const [
+        NavigationDestination(
+          icon: Icon(Icons.explore),
+          label: 'Explore',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.history),
+          label: 'History',
+        )
+      ],
+    );
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          context.go('/abc');
-          setState(() {
-            print(currentPageIndex);
-            currentPageIndex = index;
-          });
-        },
-        indicatorColor: Colors.amber,
-        selectedIndex: currentPageIndex,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.explore),
-            label: 'Explore',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.history),
-            label: 'History',
-          )
-        ],
-      ),
+      bottomNavigationBar: navigationBar,
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
