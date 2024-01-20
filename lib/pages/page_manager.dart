@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_flutter_time_tracker/main.dart';
+import 'package:my_flutter_time_tracker/classes/page_layout_generator.dart'
+    as PageLayoutGenerator;
 
 class PageManager extends StatefulWidget {
   final String pageName;
@@ -14,16 +16,8 @@ class PageManager extends StatefulWidget {
 class _PageManagerState extends State<PageManager> {
   @override
   Widget build(BuildContext context) {
-    Scaffold getScaffold(AppBar appBar, NavigationBar navigationBar) {
-      return Scaffold(
-        appBar: appBar,
-        bottomNavigationBar: navigationBar,
-        body: Center(
-          child: Text("small"),
-        ),
-      );
-    }
-
+    var pageLayoutGenerator =
+        PageLayoutGenerator.PageLayoutGenerator(name: "swag", path: "swag");
     var appBar2 = AppBar(
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       // Here we take the value from the MyHomePage object that was created by
@@ -59,7 +53,8 @@ class _PageManagerState extends State<PageManager> {
           if (constraints.maxWidth > 600) {
             return Text("big");
           } else {
-            return getScaffold(appBar2, navigationBar);
+            return pageLayoutGenerator.getScaffoldForMobile(
+                appBar2, navigationBar);
           }
         },
       );
