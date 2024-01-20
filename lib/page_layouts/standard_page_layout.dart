@@ -46,6 +46,7 @@ class StandardPageLayout implements IPageLayout {
 
   NavigationBar getNavigationBar() {
     var navigationBar = NavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
         onDestinationSelected: (int index) {
           context.go(routes.routes[index].path);
         },
@@ -62,7 +63,7 @@ class StandardPageLayout implements IPageLayout {
 
   NavigationRail getNavigationRailForDesktop() {
     return NavigationRail(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       labelType: NavigationRailLabelType.all,
       onDestinationSelected: (int index) {
         context.go(routes.routes[index].path);
@@ -79,6 +80,7 @@ class StandardPageLayout implements IPageLayout {
 
   NavigationRail getNavigationRailForTablet() {
     return NavigationRail(
+      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       onDestinationSelected: (int index) {
         context.go(routes.routes[index].path);
       },
