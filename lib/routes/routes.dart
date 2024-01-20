@@ -5,11 +5,19 @@ import 'package:my_flutter_time_tracker/classes/route_element.dart';
 import 'package:my_flutter_time_tracker/pages/welcome_page.dart';
 
 List<RouteElement> routes = [
-  RouteElement(name: 'welcome', path: '/', icon: const Icon(Icons.home)),
+  RouteElement(
+      name: 'Flutter Time Tracker',
+      path: '/',
+      icon: const Icon(Icons.home),
+      widget: const WelcomePage(title: "Welcome")),
   RouteElement(
       name: 'Time Tracking',
       path: '/time-tracking',
       icon: const Icon(Icons.lock_clock),
-      widget: WelcomePage(title: "Time Tracking")),
-  RouteElement(name: 'abc', path: '/abc', icon: const Icon(Icons.explore)),
+      widget: const WelcomePage(title: "Time Tracking")),
+  RouteElement(
+      name: 'About',
+      path: '/about',
+      icon: const Icon(Icons.explore),
+      widget: const WelcomePage(title: "About")),
 ];

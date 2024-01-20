@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_time_tracker/main.dart';
 import 'package:my_flutter_time_tracker/page_layouts/standard_page_layout.dart';
 import 'package:my_flutter_time_tracker/pages/welcome_page.dart';
+import 'package:my_flutter_time_tracker/routes/routes.dart' as routes;
 
 class PageManager extends StatefulWidget {
   final String pageName;
@@ -22,12 +22,16 @@ class _PageManagerState extends State<PageManager> {
       title: Text(widget.pageName),
     );
 
-    if (widget.pageName == 'MyHomePagexx') {
+    if (routes.routes
+        .where((element) => element.name == widget.pageName)
+        .isEmpty) {
       return standardPageLayout.getLayoutBuilder(
           appBar2, WelcomePage(title: widget.pageName));
     } else {
-      return standardPageLayout.getLayoutBuilder(
-          appBar2, WelcomePage(title: widget.pageName));
+      var route = routes.routes
+          .where((element) => element.name == widget.pageName)
+          .first;
+      return standardPageLayout.getLayoutBuilder(appBar2, route.widget);
     }
   }
 }

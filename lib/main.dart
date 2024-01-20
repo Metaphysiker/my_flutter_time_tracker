@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_flutter_time_tracker/pages/page_manager.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:my_flutter_time_tracker/routes/routes.dart' as routes;
 
 void main() {
   setPathUrlStrategy();
@@ -161,22 +162,13 @@ class _MyHomePageState extends State<MyHomePage> {
 // GoRouter configuration
 final _router = GoRouter(
   initialLocation: '/',
-  routes: [
-    GoRoute(
-      name:
-          'abc', // Optional, add name to your routes. Allows you navigate by name instead of path
-      path: '/abc',
+  routes: routes.routes.map((route) {
+    return GoRoute(
+      name: route.name,
+      path: route.path,
       builder: (context, state) => PageManager(
-        pageName: "abc",
+        pageName: route.name,
       ),
-    ),
-    GoRoute(
-      name:
-          'home', // Optional, add name to your routes. Allows you navigate by name instead of path
-      path: '/',
-      builder: (context, state) => PageManager(
-        pageName: "MyHomePagexx",
-      ),
-    ),
-  ],
+    );
+  }).toList(),
 );
