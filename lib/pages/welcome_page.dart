@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
-  final String title;
-  const WelcomePage({super.key, required this.title});
+  const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +16,5 @@ class WelcomePage extends StatelessWidget {
         const Text('Anmelden, Projekt auswählen und eintragen'),
       ],
     ));
-    //return Text(title);
   }
 }
