@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_time_tracker/constants/constants.dart';
 
 class WelcomePage extends StatelessWidget {
   final String title;

@@ -162,12 +162,12 @@ class _MyHomePageState extends State<MyHomePage> {
 // GoRouter configuration
 final _router = GoRouter(
   initialLocation: '/',
-  routes: routes.routes.map((route) {
+  routes: routes.routes.map((routeElement) {
     return GoRoute(
-      name: route.name,
-      path: route.path,
+      name: routeElement.name,
+      path: routeElement.path,
       builder: (context, state) => PageManager(
-        pageName: route.name,
+        routeElement: routeElement,
       ),
     );
   }).toList(),
